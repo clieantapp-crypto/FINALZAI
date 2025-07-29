@@ -8,7 +8,7 @@ interface CardLogoProps {
 export function CardLogo({ cardType, className = "" }: CardLogoProps) {
   if (cardType === "visa") {
     return <div className={`text-blue-800 font-bold text-xl italic ${className}`}>
-    <img src="/" alt="logo" />
+    <img src="/logo_vuisz.png" alt="logo" />
     </div>
   }
 
@@ -19,7 +19,9 @@ export function CardLogo({ cardType, className = "" }: CardLogoProps) {
           <div className="w-6 h-6 bg-red-500 rounded-full opacity-90"></div>
           <div className="w-6 h-6 bg-yellow-500 rounded-full -ml-3 opacity-90"></div>
         </div>
-        <span className="ml-2 font-bold text-lg text-gray-800">mastercard</span>
+        <span className="ml-2 font-bold text-lg text-gray-800">
+    <img src="/MasterCard_Logo.svg.png" alt="logo" />
+          </span>
       </div>
     )
   }

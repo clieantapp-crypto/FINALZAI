@@ -9,7 +9,7 @@ export function detectCardType(cardNumber: string): CardType {
   // Visa: starts with 4
   if (cleanNumber.startsWith("4")) {
     return "visa"
-  }
+  }''
 
   // Mastercard: starts with 5 (5100-5599) or 2 (2221-2720)
   if (cleanNumber.startsWith("5")) {

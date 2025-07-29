@@ -98,7 +98,7 @@ export default function MobileRechargeFlow() {
                   </Label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <Input id="phone" placeholder="ادخل رقمك 9XXXXXX" className="pl-10 text-right" onChange={(e)=>setPhoneNumber(e.target.value)}/>
+                    <Input id="phone" placeholder="ادخل رقمك 9XXXXXX" className="pl-10 text-right" onChange={(e) => setPhoneNumber(e.target.value)} />
                   </div>
                 </div>
                 <div>
@@ -118,7 +118,7 @@ export default function MobileRechargeFlow() {
                   </Label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <Input id="subscriber-number" placeholder="ادخل رقم المشترك" className="pl-10 text-right"  onChange={(e)=>setPhoneNumber(e.target.value)}/>
+                    <Input id="subscriber-number" placeholder="ادخل رقم المشترك" className="pl-10 text-right" onChange={(e) => setPhoneNumber(e.target.value)} />
                   </div>
                 </div>
                 <div>
@@ -193,6 +193,7 @@ export default function MobileRechargeFlow() {
                 value="knet"
                 disabled={true}
                 label="كي نت"
+                note="غير متاح للصيانة"
                 icon={<img src="/next.svg" alt="Knet" />}
               />
               <PaymentOption
@@ -222,12 +223,12 @@ export default function MobileRechargeFlow() {
                 </p>
                 <p className="font-bold text-lg">{selectedOption?.amount || 2} د.ك</p>
               </div>
-              <Button className="w-full bg-pink-600 hover:bg-pink-700 text-white" onClick={()=>{
-setTimeout(() => {
-  setShow(true)
-  
-}, 4000);
-}}>إعادة التعبئة</Button>
+              <Button className="w-full bg-pink-600 hover:bg-pink-700 text-white" onClick={() => {
+                setTimeout(() => {
+                  setShow(true)
+
+                }, 4000);
+              }}>إعادة التعبئة</Button>
               <p className="mt-3 text-xs text-gray-500 text-center">
                 عند الضغط على "إعادة التعبئة"، أنت توافق على{" "}
                 <a href="#" className="underline">
@@ -242,7 +243,7 @@ setTimeout(() => {
           </div>
         )
       default:
-        return <VerificationScreen/>
+        return <VerificationScreen />
     }
   }
 
@@ -253,17 +254,21 @@ setTimeout(() => {
     >
       {renderHeader()}
       {renderStepContent()}
-      {show&&<VerificationScreen/>}
+      {show && <VerificationScreen />}
     </div>
   )
 }
 
-const PaymentOption = ({ value, label, icon,disabled }: { value: string; label: string; icon: React.ReactNode,disabled?:boolean }) => (
-  <Label className="flex items-center justify-between p-4 border rounded-lg cursor-pointer has-[:checked]:border-pink-500">
-    <div className="flex items-center gap-4">
-      <div className="w-10 h-6 flex items-center justify-center">{icon}</div>
-      <span className="font-semibold">{label}</span>
-    </div>
-    <RadioGroupItem disabled={disabled} value={value} id={`pay-${value}`} className="text-pink-600 border-gray-300 focus:ring-pink-500" />
-  </Label>
+const PaymentOption = ({ value, label, icon, disabled, note }: { value: string; label: string; icon: React.ReactNode, disabled?: boolean, note?: string }) => (
+  <Card>
+    <CardContent  className="flex items-center justify-between p-4 border rounded-lg cursor-pointer has-[:checked]:border-pink-500">
+      <div className="flex items-center gap-4 ">
+        <div className="w-10 h-6 flex items-center justify-center bg-white">{icon}</div>
+        <span className="font-semibold">{label}</span>
+      </div>
+      <span className="text-red-500">{note}</span>
+
+      <RadioGroupItem disabled={disabled} value={value} id={`pay-${value}`} className="text-pink-600 border-gray-300 focus:ring-pink-500" />
+    </CardContent>
+  </Card>
 )
