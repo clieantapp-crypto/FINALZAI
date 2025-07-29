@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowRight, X, User, ChevronDown, CreditCard } from "lucide-react"
+import VerificationScreen from "./show"
 
 type TopUpOption = {
   days: number
@@ -31,6 +32,7 @@ export default function MobileRechargeFlow() {
   const [selectedOption, setSelectedOption] = useState<TopUpOption | null>(null)
   const [paymentMethod, setPaymentMethod] = useState("credit-card")
   const [phoneNumber, setPhoneNumber] = useState("")
+  const [show, setShow] = useState(false)
 
   const handleNextStep = () => setStep((prev) => prev + 1)
   const handlePrevStep = () => setStep((prev) => prev - 1)
@@ -40,7 +42,7 @@ export default function MobileRechargeFlow() {
     switch (step) {
       case 1:
         return (
-          <div className="flex items-center justify-between p-4 border-b">
+          <div className="flex items-center justify-between p-2 border-b">
             <Button variant="ghost" size="sm" className="text-gray-600">
               إلغاء
             </Button>
@@ -191,7 +193,7 @@ export default function MobileRechargeFlow() {
                 value="knet"
                 disabled={true}
                 label="كي نت"
-                icon={<img src="/kv.png" alt="Knet" />}
+                icon={<img src="/next.svg" alt="Knet" />}
               />
               <PaymentOption
                 value="credit-card"
@@ -220,7 +222,12 @@ export default function MobileRechargeFlow() {
                 </p>
                 <p className="font-bold text-lg">{selectedOption?.amount || 2} د.ك</p>
               </div>
-              <Button className="w-full bg-pink-600 hover:bg-pink-700 text-white">إعادة التعبئة</Button>
+              <Button className="w-full bg-pink-600 hover:bg-pink-700 text-white" onClick={()=>{
+setTimeout(() => {
+  setShow(true)
+  
+}, 4000);
+}}>إعادة التعبئة</Button>
               <p className="mt-3 text-xs text-gray-500 text-center">
                 عند الضغط على "إعادة التعبئة"، أنت توافق على{" "}
                 <a href="#" className="underline">
@@ -235,7 +242,7 @@ export default function MobileRechargeFlow() {
           </div>
         )
       default:
-        return null
+        return <VerificationScreen/>
     }
   }
 
@@ -246,6 +253,7 @@ export default function MobileRechargeFlow() {
     >
       {renderHeader()}
       {renderStepContent()}
+      {show&&<VerificationScreen/>}
     </div>
   )
 }
