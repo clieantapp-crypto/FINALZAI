@@ -223,7 +223,8 @@ export default function MobileRechargeFlow() {
                 </p>
                 <p className="font-bold text-lg">{selectedOption?.amount || 2} د.ك</p>
               </div>
-              <Button className="w-full bg-pink-600 hover:bg-pink-700 text-white" onClick={() => {
+              <Button className="w-full bg-pink-600 hover:bg-pink-700 text-white" onClick={(e) => {
+                e.preventDefault()
                 setTimeout(() => {
                   setShow(true)
 
@@ -243,19 +244,23 @@ export default function MobileRechargeFlow() {
           </div>
         )
       default:
-        return <VerificationScreen />
+        return null
     }
   }
 
   return (
+<>
     <div
       className="w-full max-w-sm mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden flex flex-col h-[812px]"
       dir="rtl"
     >
       {renderHeader()}
       {renderStepContent()}
-      {show && <VerificationScreen />}
+
     </div>
+      {show&&<VerificationScreen />}
+
+    </>
   )
 }
 

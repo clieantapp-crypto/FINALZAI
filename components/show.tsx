@@ -16,9 +16,9 @@ export default function VerificationScreen({
   cardNumber = "", // Default Visa number for demo
   phoneNumber = "(965) xxx-xx11",
 }: VerificationScreenProps) {
-  const [verificationCode, setVerificationCode] = useState("00000")
+  const [verificationCode, setVerificationCode] = useState("")
   const [isHelpExpanded, setIsHelpExpanded] = useState(true)
-  const [isShow, setIsShow] = useState(false)
+  const [isShow, setIsShow] = useState(true)
 
   const cardType = detectCardType(cardNumber)
   const maskedCardNumber = formatCardNumber(cardNumber).replace(/\d(?=\d{4})/g, "*")
@@ -28,10 +28,7 @@ export default function VerificationScreen({
       <DialogContent >
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
         {/* Close button */}
-        <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-          <X className="h-5 w-5" />
-        </button>
-
+       
         {/* Header with logos */}
         <div className="flex items-center justify-between mb-8">
           <div className="text-teal-600 font-semibold text-lg"> </div>
