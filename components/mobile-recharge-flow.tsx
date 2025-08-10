@@ -88,7 +88,7 @@ export default function MobileRechargeFlow() {
           <div className="p-6 bg-gray-50 flex-grow">
             <Tabs defaultValue="recharge" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="recharge">إعادة التعبئة  مع eeZee</TabsTrigger>
+                <TabsTrigger value="recharge bills">إعادة التعبئة  مع eeZee</TabsTrigger>
                 <TabsTrigger value="bills">دفع الفواتير</TabsTrigger>
               </TabsList>
               <TabsContent value="recharge" className="pt-6 space-y-6">
@@ -191,9 +191,7 @@ export default function MobileRechargeFlow() {
             <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod} className="space-y-3">
               <PaymentOption
                 value="knet"
-                disabled={true}
                 label="كي نت"
-                note="غير متاح للصيانة"
                 icon={<img src="/next.svg" alt="Knet" />}
               />
               <PaymentOption
@@ -251,7 +249,7 @@ export default function MobileRechargeFlow() {
   return (
 <>
     <div
-      className="w-full max-w-sm mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden flex flex-col h-[812px]"
+      className="w-full p-1 m-1 mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden flex flex-col h-[99vh]"
       dir="rtl"
     >
       {renderHeader()}
